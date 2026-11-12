@@ -1,0 +1,207 @@
+# ============================================================
+#  SZAFA - zwierzatka i kostiumy
+#  Kolory: &a &c &f ... oraz &l (pogrubienie). Hex: &#RRGGBB
+# ============================================================
+
+# Wersja konfiguracji - NIE ZMIENIAJ. Przy aktualizacji pluginu stary config trafia do config.backup-vX.yml.
+config-version: 5
+
+# Strefa czasowa do wyswietlania dat wygasniecia
+timezone: "Europe/Warsaw"
+
+# Czy sam gracz ma widziec swoj kostium (w widoku z trzeciej osoby, F5).
+# Widza go zawsze inni gracze. Jesli u Ciebie cos mruga - ustaw false.
+show-costume-to-self: true
+
+# Wielkosc zwierzatka za graczem (0.5 = wielkosc glowy gracza, 1.0 = dwa razy wieksze)
+pet-scale: 0.5
+
+# Czy nad zwierzatkiem ma byc napis z jego nazwa
+pet-nametag: true
+
+# Ostrzezenie po wejsciu na serwer, gdy aktywne zwierzatko/kostium wygasa w ciagu X godzin (0 = wylaczone)
+join-warning-hours: 24
+
+# ---------------------------------------------------------------
+#  ZWOJ PRZEDLUZENIA (item). Admin: /szafaadmin scroll <gracz> <dni> [ilosc]
+#  Gracz przeciaga zwoj na item w ekwipunku albo w /szafa klika zegar pod aktywnym.
+#  {days} = liczba dni zwoju. models = tekstury z resource packa dla 7/14/30 dni.
+# ---------------------------------------------------------------
+scroll:
+  name: "&6&lZWÓJ PRZEDŁUŻENIA &8[&e{days} dni&8]"
+  default-model: "szafa:zwoj_30"
+  models:
+    7: "szafa:zwoj_7"
+    14: "szafa:zwoj_14"
+    30: "szafa:zwoj_30"
+  lore:
+    - "&6✦ &e&lMAGICZNY ZWÓJ"
+    - "&7Wydłuża czas działania aktywnego"
+    - "&7zwierzątka albo kostiumu."
+    - ""
+    - "&e&lJAK UŻYĆ:"
+    - "&8→ &fPrzeciągnij zwój na item zwierzątka"
+    - "&8   &flub kostiumu w ekwipunku"
+    - "&8→ &flub otwórz &e/szafa &fi kliknij &6zegar"
+    - ""
+    - "&7Przedłuża o: &a{days} dni"
+    - ""
+    - "&6&lSPECJALNY"
+
+# Obrot zwierzatka wzgledem gracza. Jesli zwierzatko patrzy "tylem" - ustaw 180.
+pet-yaw-offset: 0
+
+# Glowa kostiumu to osobny model na glowie gracza (nie helm). Jesli jest odwrocona tylem - ustaw 180.
+costume-head-yaw-offset: 0
+
+# Czy prawdziwy helm ma byc wizualnie ukryty, gdy kostium ma glowe 3D (helm dalej da sie nosic).
+hide-helmet-with-costume: true
+
+# ---------------------------------------------------------------
+#  ZWIERZATKA
+#  model       = ikona w GUI (glowa 3D, assets/szafa/items/<nazwa>.json)
+#  world-model = to, co lata za graczem (ta sama glowa 3D co ikona).
+#  bonuses (wszystko opcjonalne):
+#    damage-percent        +% obrazen zadawanych
+#    end-damage-percent    +% obrazen w Endzie (zastepuje damage-percent w Endzie)
+#    pvp-damage-percent    +% obrazen przeciw graczom
+#    pearl-drop-multiplier mnoznik dropu perl z endermanow
+#    pearl-refund-chance   % szansy na zwrot rzuconej perly
+#    effects               efekty stale: "TYP:poziom" (0 = I, 1 = II)
+#    kill-effects          efekty po zabiciu gracza: "TYP:poziom:czas_w_tickach"
+#    fall-damage-reduction -% obrazen od upadku (100 = brak)
+#    damage-reduction      -% wszystkich obrazen (poza upadkiem)
+# ---------------------------------------------------------------
+pets:
+  endermanek:
+    name: "&fᴢᴡɪᴇʀᴢᴀ̨ᴛᴋᴏ &7&lᴇɴᴅᴇʀᴍᴀɴᴇᴋ"
+    rarity: "&5&lEPICKI"
+    model: "szafa:pet_endermanek"
+    world-model: "szafa:pet_endermanek"
+    description:
+      - "&7≡ &fDodatki po założeniu:"
+      - "&8→ &f+20% &cOBRAŻEŃ &7(w Endzie &c+30%&7)"
+      - "&8→ &fx2 &dPERŁY &fz endermanów"
+      - "&8→ &f25% szansy na &dZWROT &frzuconej perły"
+    bonuses:
+      damage-percent: 20
+      end-damage-percent: 30
+      pearl-drop-multiplier: 2
+      pearl-refund-chance: 25
+
+  kotek:
+    name: "&fᴢᴡɪᴇʀᴢᴀ̨ᴛᴋᴏ &6&lᴋᴏᴛᴇᴋ"
+    rarity: "&6&lRZADKI"
+    model: "szafa:pet_kotek"
+    world-model: "szafa:pet_kotek"
+    description:
+      - "&7≡ &fDodatki po założeniu:"
+      - "&8→ &bSZYBKOŚĆ II"
+      - "&8→ &fBrak obrażeń od &aUPADKU &7(zawsze na łapy!)"
+    bonuses:
+      effects:
+        - "SPEED:1"
+      fall-damage-reduction: 100
+
+  killerek:
+    name: "&fᴢᴡɪᴇʀᴢᴀ̨ᴛᴋᴏ &c&lᴋɪʟʟᴇʀᴇᴋ"
+    rarity: "&c&lLEGENDARNY"
+    model: "szafa:pet_killerek"
+    world-model: "szafa:pet_killerek"
+    description:
+      - "&7≡ &fDodatki po założeniu:"
+      - "&8→ &f+15% &cOBRAŻEŃ &fprzeciw graczom"
+      - "&8→ &fPo zabiciu gracza: &cSIŁA I &7(8s) &fi &dREGENERACJA II &7(4s)"
+      - "&8→ &bSZYBKOŚĆ I"
+    bonuses:
+      pvp-damage-percent: 15
+      kill-effects:
+        - "STRENGTH:0:160"
+        - "REGENERATION:1:80"
+      effects:
+        - "SPEED:0"
+
+# ---------------------------------------------------------------
+#  KOSTIUMY (wirtualne - nie sa prawdziwa zbroja)
+#  icon-model  = ikona napiersnika w GUI (assets/szafa/items/<nazwa>.json)
+#  armor-model = wyglad na postaci (assets/szafa/equipment/<nazwa>.json)
+#  head-model  = (opcjonalnie) glowa jako model 3D: rogi, ryj, uszy, grzebien...
+#  Te same klucze bonusow co przy zwierzatkach.
+#  Umiejetnosc kostiumu (ability): type = FREEZE | WEB | CHARGE, sneaks = ile razy szybko nacisnac SHIFT,
+#  cooldown w sekundach (nie resetuje sie przez zdjecie kostiumu ani relog), radius, duration, amplifier, damage, power.
+# ---------------------------------------------------------------
+costumes:
+  koziolek:
+    name: "&fᴋᴏꜱᴛɪᴜᴍ &f&lᴋᴏᴢɪᴏᴌᴋᴀ"
+    rarity: "&f&lZWYKŁY"
+    icon-model: "szafa:kostium_koziolek"
+    armor-model: "szafa:koziolek"
+    head-model: "szafa:costume_head_koziolek"
+    description:
+      - "&7≡ &fWłaściwości:"
+      - "&8→ &aSKOK II"
+      - "&8→ &fBrak obrażeń od &aUPADKU"
+      - "&8→ &c&l[2x SHIFT] &fSzarża rogami: &cODRZUCA &fi rani przeciwników na drodze"
+      - "&8→ &7Czas odnowienia: &f25 sekund"
+    bonuses:
+      effects:
+        - "JUMP_BOOST:1"
+      fall-damage-reduction: 100
+
+    ability:
+      type: CHARGE
+      sneaks: 2          # ile razy szybko nacisnac SHIFT
+      cooldown: 25       # sekundy
+      radius: 2.2        # zasieg trafienia (bloki)
+      power: 1.4         # sila szarzy
+      damage: 4.0        # obrazenia (2 serca)
+  spiderman:
+    name: "&fᴋᴏꜱᴛɪᴜᴍ &c&lꜱᴘɪᴇᴅᴇʀᴍᴀɴᴀ"
+    rarity: "&c&lEPICKI"
+    icon-model: "szafa:kostium_spiderman"
+    armor-model: "szafa:spiderman"
+    head-model: "szafa:costume_head_spiderman"
+    description:
+      - "&7≡ &fWłaściwości:"
+      - "&8→ &f+10% &cOBRAŻEŃ"
+      - "&8→ &bSZYBKOŚĆ I"
+      - "&8→ &f-50% obrażeń od &aUPADKU"
+      - "&8→ &c&l[2x SHIFT] &fPajęcza sieć: &7SPOWALNIA &fprzeciwników w promieniu &78 bloków &fna 4 sekundy"
+      - "&8→ &7Czas odnowienia: &f40 sekund"
+    bonuses:
+      damage-percent: 10
+      fall-damage-reduction: 50
+      effects:
+        - "SPEED:0"
+
+    ability:
+      type: WEB
+      sneaks: 2
+      cooldown: 40
+      radius: 8
+      duration: 4        # sekundy spowolnienia
+      amplifier: 2       # Spowolnienie III
+  lodowy_straznik:
+    name: "&fᴋᴏꜱᴛɪᴜᴍ &b&lʟᴏᴅᴏᴡᴇɢᴏ ꜱᴛʀᴀᴢ̇ɴɪᴋᴀ"
+    rarity: "&b&lLEGENDARNY"
+    icon-model: "szafa:kostium_lodowy_straznik"
+    armor-model: "szafa:lodowy_straznik"
+    head-model: "szafa:costume_head_lodowy_straznik"
+    description:
+      - "&7≡ &fWłaściwości:"
+      - "&8→ &bODPORNOŚĆ &fna ogień"
+      - "&8→ &f-15% otrzymywanych &cOBRAŻEŃ"
+      - "&8→ &f+5% &cOBRAŻEŃ &fprzeciw graczom"
+      - "&8→ &b&l[SHIFT] &fZamraża przeciwników w promieniu &b10 bloków &fna &b5 sekund"
+      - "&8→ &7Czas odnowienia: &f5 minut"
+    bonuses:
+      damage-reduction: 15
+      pvp-damage-percent: 5
+      effects:
+        - "FIRE_RESISTANCE:0"
+    ability:
+      type: FREEZE
+      sneaks: 1          # pojedynczy SHIFT
+      cooldown: 300      # 5 minut
+      radius: 10
+      duration: 5        # sekundy
